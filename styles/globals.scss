@@ -1,0 +1,43 @@
+:root {
+  --max-width: calc(1100rem / 16);
+  --border-radius: calc(8rem / 16);
+
+  --background: #f9f9fb;
+
+  --primary-color: #ff5480;
+  --primary-dark-color: #cc4366;
+  --primary-light-color: #ff98b3;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body {
+  background-color: var(--background);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+span {
+  &.subtle {
+    color: #9b9b9b;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+}

@@ -1,0 +1,27 @@
+.button {
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+
+  &.active {
+    background-color: var(--primary-color);
+    color: #ffffff;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    background-color: #eeeeee;
+
+    &.active:hover {
+      background-color: var(--primary-color);
+    }
+  }
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: (36rem / 16);
+}

@@ -1,0 +1,49 @@
+.item {
+  width: 100%;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: calc(600rem / 16);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+
+  img {
+    transition: 0.2s all ease;
+  }
+}
+
+.author {
+  margin-top: calc(20rem / 16);
+  font-weight: 400;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  span {
+    text-transform: uppercase;
+  }
+}
+
+.title {
+  margin-top: calc(6rem / 16);
+  font-weight: 600;
+  font-size: 3rem;
+  letter-spacing: calc(0.3rem / -16);
+  color: #111210;
+  transition: 0.2s all ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .imageWrapper:hover {
+    img {
+      transform: scale(1.1);
+    }
+  }
+
+  .title:hover {
+    color: var(--primary-color);
+  }
+}

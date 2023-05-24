@@ -1,0 +1,54 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: calc(20rem / 16);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: calc(350rem / 16);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+
+  img {
+    transition: 0.2s all ease;
+  }
+}
+
+.author {
+  font-weight: 400;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  span {
+    text-transform: uppercase;
+  }
+}
+
+.title {
+  font-weight: 600;
+  color: #111210;
+  font-size: calc(28rem / 16);
+  transition: 0.2s all ease;
+}
+
+.summary {
+  font-weight: 400;
+  font-size: 1rem;
+  color: #9b9b9b;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .imageWrapper:hover {
+    img {
+      transform: scale(1.1);
+    }
+  }
+
+  .title:hover {
+    color: var(--primary-color);
+  }
+}
