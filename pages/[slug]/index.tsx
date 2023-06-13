@@ -20,7 +20,7 @@ type Props = {
 
 const openSans = Open_Sans({ subsets: ["latin"] });
 
-export const getStaticPaths: GetStaticPaths = async (context) => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const articleList = await getArticleList({
     perPage: 999,
   });
