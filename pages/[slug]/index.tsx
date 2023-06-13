@@ -35,7 +35,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
-  const slug = context.params?.["slug"] as string;
+  const slug = context.params?.slug as string;
 
   if (!slug) {
     return { notFound: true };
