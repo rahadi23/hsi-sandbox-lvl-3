@@ -21,18 +21,9 @@ type Props = {
 const openSans = Open_Sans({ subsets: ["latin"] });
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
-  const articleList = await getArticleList();
-
-  while (
-    articleList.meta.pagination.page < articleList.meta.pagination.totalPages
-  ) {
-    const nextArticleList = await getArticleList({
-      page: articleList.meta.pagination.page + 1,
-    });
-
-    articleList.data.push(...nextArticleList.data);
-    articleList.meta = nextArticleList.meta;
-  }
+  const articleList = await getArticleList({
+    perPage: 999,
+  });
 
   return {
     paths: articleList.data.map((article) => ({
