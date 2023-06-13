@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { Open_Sans } from "next/font/google";
+import Head from "next/head";
 import Image from "next/image";
 import Header from "../../../components/Header/Header";
 import RelatedArticleList from "../../../components/RelatedArticleList/RelatedArticleList";
@@ -62,6 +63,10 @@ const RelatedPage: NextPage<Props> = ({
 }) => {
   return (
     <>
+      <Head>
+        <title>Related Posts - {articleDetail.data.title} - Bahram</title>
+      </Head>
+
       <div className={`${styles.header} ${openSans.className}`}>
         <Header />
 

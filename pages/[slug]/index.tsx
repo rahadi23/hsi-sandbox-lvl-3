@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { Open_Sans } from "next/font/google";
+import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 import Header from "../../components/Header/Header";
@@ -80,6 +81,10 @@ const DetailPage: NextPage<Props> = ({ slug, articleDetail }) => {
 
   return (
     <>
+      <Head>
+        <title>{articleDetail.data.title} - Bahram</title>
+      </Head>
+
       <div className={`${styles.header} ${openSans.className}`}>
         <Header />
 
