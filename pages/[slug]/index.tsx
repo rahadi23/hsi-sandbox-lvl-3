@@ -1,10 +1,9 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { Open_Sans } from "next/font/google";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import Header from "../../components/Header/Header";
-import RelatedArticleItem from "../../components/RelatedArticleItem/RelatedArticleItem";
+import RelatedArticleHighlightList from "../../components/RelatedArticleHighlightList/RelatedArticleHighlightList";
 import {
   ArticleDetailResponse,
   getArticleDetail,
@@ -79,47 +78,6 @@ const DetailPage: NextPage<Props> = (props) => {
     })();
   }, [props.articleDetail.data.category.id, props.articleDetail.data.id]);
 
-  const renderRelatedArticles = () => {
-    // if (state.state === "loading") {
-    //   return <h1 style={{ fontSize: 36 }}>Loading...</h1>;
-    // }
-
-    if (
-      state.state === "error" ||
-      state.state === "idle" ||
-      !state.data?.data.length
-    ) {
-      return;
-    }
-
-    return (
-      <>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <h1 style={{ fontSize: 36 }}>You might also like...</h1>
-
-          <Link href={`/${props.slug}/related`} style={{ color: "#9B9B9B" }}>
-            More
-          </Link>
-        </div>
-
-        <div className={styles.relatedArticleWrapper} style={{ marginTop: 60 }}>
-          {state.data.data.map((relatedArticle) => (
-            <RelatedArticleItem
-              key={relatedArticle.id}
-              article={relatedArticle}
-            />
-          ))}
-        </div>
-      </>
-    );
-  };
-
   return (
     <>
       <div className={`${styles.header} ${openSans.className}`}>
@@ -156,7 +114,14 @@ const DetailPage: NextPage<Props> = (props) => {
             <p className={styles.content}>{props.articleDetail.data.content}</p>
           </div>
 
-          <div style={{ marginTop: 90 }}>{renderRelatedArticles()}</div>
+          <div style={{ marginTop: 90 }}>
+            {state.state === "success" && state.data?.data.length ? (
+              <RelatedArticleHighlightList
+                slug={props.slug}
+                relatedArticles={state.data.data}
+              />
+            ) : null}
+          </div>
         </main>
       </div>
     </>

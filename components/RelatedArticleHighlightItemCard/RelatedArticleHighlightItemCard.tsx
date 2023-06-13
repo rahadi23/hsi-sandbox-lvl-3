@@ -2,13 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Article } from "../../constants/endpoint.constant";
-import styles from "./RelatedArticleItem.module.scss";
+import styles from "./RelatedArticleHighlightItemCard.module.scss";
 
 type Props = {
   article: Article;
 };
 
-const RelatedArticleItem: React.FC<Props> = (props) => {
+const RelatedArticleHighlightItemCard: React.FC<Props> = (props) => {
   const author = props.article.author;
   const authorFullName =
     `${author.firstName} ${author.middleName} ${author.lastName}`.trim();
@@ -42,4 +42,4 @@ const RelatedArticleItem: React.FC<Props> = (props) => {
   );
 };
 
-export default RelatedArticleItem;
+export default RelatedArticleHighlightItemCard;
