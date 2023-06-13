@@ -50,8 +50,8 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   }
 };
 
-const DetailPage: NextPage<Props> = (props) => {
-  const author = props.articleDetail.data.author;
+const DetailPage: NextPage<Props> = ({ slug, articleDetail }) => {
+  const author = articleDetail.data.author;
   const authorFullName =
     `${author.firstName} ${author.middleName} ${author.lastName}`.trim();
 
@@ -65,8 +65,8 @@ const DetailPage: NextPage<Props> = (props) => {
         dispatch({ type: "loading" });
 
         const relatedArticleList = await getArticleList({
-          categoryId: props.articleDetail.data.category.id,
-          excludedArticleId: props.articleDetail.data.id,
+          categoryId: articleDetail.data.category.id,
+          excludedArticleId: articleDetail.data.id,
           perPage: 2,
         });
 
@@ -76,7 +76,7 @@ const DetailPage: NextPage<Props> = (props) => {
         console.error(err);
       }
     })();
-  }, [props.articleDetail.data.category.id, props.articleDetail.data.id]);
+  }, [articleDetail.data.category.id, articleDetail.data.id]);
 
   return (
     <>
@@ -84,17 +84,15 @@ const DetailPage: NextPage<Props> = (props) => {
         <Header />
 
         <div className={styles.titleWrapper} style={{ marginTop: 150 }}>
-          <h1 className={styles.title}>{props.articleDetail.data.title}</h1>
+          <h1 className={styles.title}>{articleDetail.data.title}</h1>
 
-          <span className={styles.summary}>
-            {props.articleDetail.data.summary}
-          </span>
+          <span className={styles.summary}>{articleDetail.data.summary}</span>
 
           <div className={styles.author}>
             <span className="subtle">By</span>
             <span>{authorFullName}</span>
             <span className="subtle">In</span>
-            <span>{props.articleDetail.data.category.name}</span>
+            <span>{articleDetail.data.category.name}</span>
           </div>
         </div>
       </div>
@@ -103,21 +101,21 @@ const DetailPage: NextPage<Props> = (props) => {
         <main className={`${styles.main} ${openSans.className}`}>
           <div className={styles.imageWrapper}>
             <Image
-              src={props.articleDetail.data.thumbnail}
-              alt={props.articleDetail.data.title}
+              src={articleDetail.data.thumbnail}
+              alt={articleDetail.data.title}
               fill
               style={{ objectFit: "cover" }}
             />
           </div>
 
           <div style={{ marginTop: 60 }}>
-            <p className={styles.content}>{props.articleDetail.data.content}</p>
+            <p className={styles.content}>{articleDetail.data.content}</p>
           </div>
 
           <div style={{ marginTop: 90 }}>
             {state.state === "success" && state.data?.data.length ? (
               <RelatedArticleHighlightList
-                slug={props.slug}
+                slug={slug}
                 relatedArticles={state.data.data}
               />
             ) : null}

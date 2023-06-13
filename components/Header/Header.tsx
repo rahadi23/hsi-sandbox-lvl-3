@@ -8,10 +8,10 @@ type Props = {
   rightChild?: React.ReactNode;
 };
 
-const Header: React.FC<Props> = (props) => {
+const Header: React.FC<Props> = ({ leftChild, rightChild }) => {
   return (
     <div className={styles.wrapper}>
-      <div>{props.leftChild}</div>
+      <div>{leftChild}</div>
 
       <div className={styles.logo}>
         <Link href="/">
@@ -19,7 +19,7 @@ const Header: React.FC<Props> = (props) => {
         </Link>
       </div>
 
-      <div>{props.rightChild}</div>
+      <div>{rightChild}</div>
     </div>
   );
 };

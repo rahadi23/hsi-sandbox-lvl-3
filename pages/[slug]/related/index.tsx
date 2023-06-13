@@ -55,7 +55,11 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   }
 };
 
-const RelatedPage: NextPage<Props> = (props) => {
+const RelatedPage: NextPage<Props> = ({
+  slug,
+  articleDetail,
+  relatedArticleList,
+}) => {
   return (
     <>
       <div className={`${styles.header} ${openSans.className}`}>
@@ -67,18 +71,18 @@ const RelatedPage: NextPage<Props> = (props) => {
           <div style={{ display: "flex", gap: 50 }}>
             <div className={styles.imageWrapper} style={{ flex: "1 0 auto" }}>
               <Image
-                src={props.articleDetail.data.thumbnail}
-                alt={props.articleDetail.data.title}
+                src={articleDetail.data.thumbnail}
+                alt={articleDetail.data.title}
                 fill
                 style={{ objectFit: "cover" }}
               />
             </div>
 
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <h1 className={styles.title}>{props.articleDetail.data.title}</h1>
+              <h1 className={styles.title}>{articleDetail.data.title}</h1>
 
               <span className={styles.summary} style={{ marginTop: 12 }}>
-                {props.articleDetail.data.summary}
+                {articleDetail.data.summary}
               </span>
             </div>
           </div>
@@ -88,8 +92,8 @@ const RelatedPage: NextPage<Props> = (props) => {
       <div className={styles.mainWrapper}>
         <main className={`${styles.main} ${openSans.className}`}>
           <RelatedArticleList
-            articleDetail={props.articleDetail.data}
-            initialArticleList={props.relatedArticleList}
+            articleDetail={articleDetail.data}
+            initialArticleList={relatedArticleList}
           />
         </main>
       </div>

@@ -23,8 +23,8 @@ const NavButton: React.FC<Props> & { Group: React.FC<GroupProps> } = (
 
 type GroupProps = React.PropsWithChildren;
 
-const NavButtonGroup: React.FC<GroupProps> = (props) => {
-  return <div className={styles.group}>{props.children}</div>;
+const NavButtonGroup: React.FC<GroupProps> = ({ children }) => {
+  return <div className={styles.group}>{children}</div>;
 };
 
 NavButton.Group = NavButtonGroup;

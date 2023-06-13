@@ -8,18 +8,18 @@ type Props = {
   article: Article;
 };
 
-const ArticleItem: React.FC<Props> = (props) => {
-  const author = props.article.author;
+const ArticleItem: React.FC<Props> = ({ article }) => {
+  const author = article.author;
   const authorFullName =
     `${author.firstName} ${author.middleName} ${author.lastName}`.trim();
 
   return (
     <div className={styles.item}>
-      <Link href={`/${props.article.slug}`}>
+      <Link href={`/${article.slug}`}>
         <div className={styles.imageWrapper}>
           <Image
-            src={props.article.thumbnail}
-            alt={props.article.title}
+            src={article.thumbnail}
+            alt={article.title}
             fill
             style={{ objectFit: "cover" }}
           />
@@ -30,12 +30,12 @@ const ArticleItem: React.FC<Props> = (props) => {
         <span className="subtle">By</span>
         <span>{authorFullName}</span>
         <span className="subtle">In</span>
-        <span>{props.article.category.name}</span>
+        <span>{article.category.name}</span>
       </div>
 
-      <Link href={`/${props.article.slug}`}>
+      <Link href={`/${article.slug}`}>
         <div className={styles.title}>
-          <span>{props.article.title}</span>
+          <span>{article.title}</span>
         </div>
       </Link>
     </div>

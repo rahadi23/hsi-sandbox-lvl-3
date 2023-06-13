@@ -14,11 +14,14 @@ type Props = {
   initialArticleList?: ArticleListResponse;
 };
 
-const RelatedArticleList: React.FC<Props> = (props) => {
+const RelatedArticleList: React.FC<Props> = ({
+  articleDetail,
+  initialArticleList,
+}) => {
   const [state, dispatch] = React.useReducer(
     articleListReducer,
-    props.initialArticleList
-      ? { state: "success", data: props.initialArticleList }
+    initialArticleList
+      ? { state: "success", data: initialArticleList }
       : { state: "idle" }
   );
 
@@ -33,8 +36,8 @@ const RelatedArticleList: React.FC<Props> = (props) => {
       }
 
       const nextPageArticleList = await getArticleList({
-        categoryId: props.articleDetail.category.id,
-        excludedArticleId: props.articleDetail.id,
+        categoryId: articleDetail.category.id,
+        excludedArticleId: articleDetail.id,
         page,
       });
 

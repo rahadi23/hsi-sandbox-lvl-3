@@ -14,11 +14,11 @@ type Props = {
   initialArticleList?: ArticleListResponse;
 };
 
-const ArticleList: React.FC<Props> = (props) => {
+const ArticleList: React.FC<Props> = ({ sort, initialArticleList }) => {
   const [state, dispatch] = React.useReducer(
     articleListReducer,
-    props.initialArticleList
-      ? { state: "success", data: props.initialArticleList }
+    initialArticleList
+      ? { state: "success", data: initialArticleList }
       : { state: "idle" }
   );
 
@@ -33,7 +33,7 @@ const ArticleList: React.FC<Props> = (props) => {
       }
 
       const nextPageArticleList = await getArticleList({
-        sort: props.sort,
+        sort: sort,
         page,
       });
 
@@ -61,7 +61,7 @@ const ArticleList: React.FC<Props> = (props) => {
 
   return (
     <>
-      <div key={props.sort} className={styles.wrapper}>
+      <div key={sort} className={styles.wrapper}>
         {state.data.data.map((article) => (
           <ArticleItem key={article.id} article={article} />
         ))}

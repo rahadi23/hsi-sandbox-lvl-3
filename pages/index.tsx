@@ -12,7 +12,10 @@ import styles from "../styles/HomePage.module.scss";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
 
-type Props = { sort: ArticleSort; articleList: ArticleListResponse };
+type Props = {
+  sort: ArticleSort;
+  articleList: ArticleListResponse;
+};
 
 export const getServerSideProps: GetServerSideProps<Props> = async (
   context
@@ -41,28 +44,24 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
   return { props: { sort, articleList } };
 };
 
-const HomePage: NextPage<Props> = (props) => {
+const HomePage: NextPage<Props> = ({ sort, articleList }) => {
   return (
     <main className={`${styles.main} ${openSans.className}`}>
       <Header
         leftChild={
           <NavButton.Group>
-            <NavButton href="/?sort=popular" active={props.sort === "popular"}>
+            <NavButton href="/?sort=popular" active={sort === "popular"}>
               Popular
             </NavButton>
 
-            <NavButton href="/?sort=new" active={props.sort === "new"}>
+            <NavButton href="/?sort=new" active={sort === "new"}>
               New
             </NavButton>
           </NavButton.Group>
         }
       />
 
-      <ArticleList
-        key={props.sort}
-        sort={props.sort}
-        initialArticleList={props.articleList}
-      />
+      <ArticleList key={sort} sort={sort} initialArticleList={articleList} />
     </main>
   );
 };

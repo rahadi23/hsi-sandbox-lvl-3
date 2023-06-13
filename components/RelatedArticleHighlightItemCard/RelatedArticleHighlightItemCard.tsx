@@ -8,18 +8,18 @@ type Props = {
   article: Article;
 };
 
-const RelatedArticleHighlightItemCard: React.FC<Props> = (props) => {
-  const author = props.article.author;
+const RelatedArticleHighlightItemCard: React.FC<Props> = ({ article }) => {
+  const author = article.author;
   const authorFullName =
     `${author.firstName} ${author.middleName} ${author.lastName}`.trim();
 
   return (
     <div className={styles.item}>
-      <Link href={`/${props.article.slug}`}>
+      <Link href={`/${article.slug}`}>
         <div className={styles.imageWrapper}>
           <Image
-            src={props.article.thumbnail}
-            alt={props.article.title}
+            src={article.thumbnail}
+            alt={article.title}
             fill
             style={{ objectFit: "cover" }}
           />
@@ -30,14 +30,14 @@ const RelatedArticleHighlightItemCard: React.FC<Props> = (props) => {
         <span className="subtle">By</span>
         <span>{authorFullName}</span>
         <span className="subtle">In</span>
-        <span>{props.article.category.name}</span>
+        <span>{article.category.name}</span>
       </div>
 
-      <Link href={`/${props.article.slug}`} className={styles.title}>
-        {props.article.title}
+      <Link href={`/${article.slug}`} className={styles.title}>
+        {article.title}
       </Link>
 
-      <span className={styles.summary}>{props.article.summary}</span>
+      <span className={styles.summary}>{article.summary}</span>
     </div>
   );
 };

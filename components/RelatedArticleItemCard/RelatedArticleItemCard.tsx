@@ -9,28 +9,26 @@ type Props = {
   article: Article;
 };
 
-const RelatedArticleItemCard: React.FC<Props> = (props) => {
+const RelatedArticleItemCard: React.FC<Props> = ({ num, article }) => {
   return (
-    <Link href={`/${props.article.slug}`}>
+    <Link href={`/${article.slug}`}>
       <div className={styles.card}>
         <div className={styles.content}>
-          <span className={styles.number}>
-            {`${props.num}`.padStart(2, "0")}
-          </span>
+          <span className={styles.number}>{`${num}`.padStart(2, "0")}</span>
 
           <span className={styles.title} style={{ marginTop: 12 }}>
-            {props.article.title}
+            {article.title}
           </span>
 
           <span className={styles.summary} style={{ marginTop: 24 }}>
-            {props.article.summary}
+            {article.summary}
           </span>
         </div>
 
         <div className={styles.imageWrapper}>
           <Image
-            src={props.article.thumbnail}
-            alt={props.article.title}
+            src={article.thumbnail}
+            alt={article.title}
             fill
             style={{ objectFit: "cover" }}
           />

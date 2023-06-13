@@ -9,7 +9,10 @@ type Props = {
   relatedArticles: Article[];
 };
 
-const RelatedArticleHighlightList: React.FC<Props> = (props) => {
+const RelatedArticleHighlightList: React.FC<Props> = ({
+  slug,
+  relatedArticles,
+}) => {
   return (
     <>
       <div
@@ -21,13 +24,13 @@ const RelatedArticleHighlightList: React.FC<Props> = (props) => {
       >
         <h1 style={{ fontSize: 36 }}>You might also like...</h1>
 
-        <Link href={`/${props.slug}/related`} style={{ color: "#9B9B9B" }}>
+        <Link href={`/${slug}/related`} style={{ color: "#9B9B9B" }}>
           More
         </Link>
       </div>
 
       <div className={styles.relatedArticleWrapper} style={{ marginTop: 60 }}>
-        {props.relatedArticles.map((relatedArticle) => (
+        {relatedArticles.map((relatedArticle) => (
           <RelatedArticleHighlightItemCard
             key={relatedArticle.id}
             article={relatedArticle}
